@@ -10,6 +10,20 @@ const sintomasInput = document.querySelector('#sintomas');
 const formulario = document.querySelector("#nueva-cita");
 const contendorCitas = document.querySelector('#citas');
 
+// Clases
+class Citas {
+    constructor() {
+        this.citas = [];
+    }
+}
+
+class UI {
+    
+}
+
+const administrarCitas = new Citas();
+const ui = new UI()
+
 // Eventos
 eventListeners();
 function eventListeners() {
@@ -19,6 +33,8 @@ function eventListeners() {
     fechaInput.addEventListener('input', datosCita);
     horaInput.addEventListener('input', datosCita);
     sintomasInput.addEventListener('input', datosCita);
+
+    formulario.addEventListener('submit', nuevaCita);
 }
 
 // Objeto de cita
@@ -27,6 +43,7 @@ citaObj = {
     propietario: '',
     telefono: '',
     fecha: '',
+    hora: '',
     sintomas: ''
 }
 
@@ -35,4 +52,14 @@ function datosCita(e) {
     // Name the input in index.html first
     citaObj[e.target.name] = e.target.value;
     console.log(citaObj);
+}
+
+// Validacion y adicion de una nueva cita
+function nuevaCita(e) {
+    e.preventDefault();
+    
+    // Extraccion de las propiedades de citaObj
+    const { mascota, propietario, telefono, fecha, hora, sintomas } = citaObj;
+
+    // Validacion de campos
 }
