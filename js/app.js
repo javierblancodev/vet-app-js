@@ -18,7 +18,29 @@ class Citas {
 }
 
 class UI {
-    
+    imprimirAlerta(mensaje, tipo) {
+        // Crea el div
+        const divMensaje = document.createElement('div');
+        divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
+
+        // Agrega estilos en funcion del tipo de alerta
+        if(tipo === 'error') {
+            divMensaje.classList.add('alert-danger');
+        } else if(tipo === 'success') {
+            divMensaje.classList.add('success');
+        }
+
+        // Agrega contenido
+        divMensaje.textContent = mensaje;
+
+        // Inserta el div en el DOM
+        document.querySelector('#contenido').insertBefore(divMensaje, document.querySelector('.agregar-cita'));
+
+        // Elimina el div despues de 5 seg
+        setTimeout(() => {
+            divMensaje.remove();
+        }, 5000);
+    }
 }
 
 const administrarCitas = new Citas();
@@ -62,4 +84,9 @@ function nuevaCita(e) {
     const { mascota, propietario, telefono, fecha, hora, sintomas } = citaObj;
 
     // Validacion de campos
+    if( [mascota, propietario, telefono, fecha, hora, sintomas].includes('') ) {
+        ui.imprimirAlerta('All fields must be filled', 'error');
+        
+        return;
+    }
 }
