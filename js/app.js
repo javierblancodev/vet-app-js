@@ -15,6 +15,11 @@ class Citas {
     constructor() {
         this.citas = [];
     }
+
+    agregarCita(cita) {
+        this.citas = [...this.citas, cita]
+        console.log(this.citas);
+    }
 }
 
 class UI {
@@ -73,7 +78,6 @@ citaObj = {
 function datosCita(e) {
     // Name the input in index.html first
     citaObj[e.target.name] = e.target.value;
-    console.log(citaObj);
 }
 
 // Validacion y adicion de una nueva cita
@@ -89,4 +93,23 @@ function nuevaCita(e) {
         
         return;
     }
+
+    // Generacion de id unico
+    citaObj.id = Date.now();
+    
+    // Adicion de nueva cita
+    administrarCitas.agregarCita({...citaObj}); // Pasamos una copia, no el objeto global. De lo contrario, se modificarian los datos en el listado cada vez que modificamos el objeto global
+
+    // Reinicio del formulario
+    reiniciarObjeto();
+    formulario.reset();
+}
+
+function reiniciarObjeto() {
+    citaObj.mascota = '';
+    citaObj.propietario = '';
+    citaObj.telefono = '';
+    citaObj.fecha = '';
+    citaObj.hora = '';
+    citaObj.sintomas = '';
 }
