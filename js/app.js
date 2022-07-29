@@ -19,6 +19,12 @@ class Citas {
     agregarCita(cita) {
         this.citas = [...this.citas, cita]
     }
+
+    eliminarCita(id) {
+        this.citas = this.citas.filter(cita => cita.id !== id);
+        ui.imprimirAlerta('La cita ha sido eliminada correctamente');
+        ui.imprimirCitas(this);
+    }
 }
 
 class UI {
@@ -78,13 +84,21 @@ class UI {
             const sintomasParrafo = document.createElement('p');
             sintomasParrafo.innerHTML = `<span class="font-weight-bolder">Sintomas: </span> ${sintomas}`
 
-            // Agregar elementos al contenedor de la cita
+            // Agrega boton para eliminar cita
+            const btnEliminar = document.createElement('button');
+            btnEliminar.classList.add('btn', 'btn-danger', 'mr-2');
+            btnEliminar.innerHTML = 'Eliminar <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+
+            btnEliminar.onclick = () => administrarCitas.eliminarCita(id);
+
+            // Agrega elementos al contenedor de la cita
             divCita.appendChild(mascotaParrafo);
             divCita.appendChild(propietarioParrafo);
             divCita.appendChild(telefonoParrafo);
             divCita.appendChild(fechaParrafo);
             divCita.appendChild(horaParrafo);
             divCita.appendChild(sintomasParrafo);
+            divCita.appendChild(btnEliminar);
 
             // Inserta el contenedor de la cita en el DOM
             contendorCitas.appendChild(divCita);
