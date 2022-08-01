@@ -18,6 +18,7 @@ class Citas {
 
     agregarCita(cita) {
         this.citas = [...this.citas, cita]
+        ui.imprimirAlerta('La cita se ha guardado correctamente');
     }
 
     eliminarCita(id) {
@@ -36,8 +37,8 @@ class UI {
         // Agrega estilos en funcion del tipo de alerta
         if(tipo === 'error') {
             divMensaje.classList.add('alert-danger');
-        } else if(tipo === 'success') {
-            divMensaje.classList.add('success');
+        } else {
+            divMensaje.classList.add('alert-success');
         }
 
         // Agrega contenido
@@ -154,7 +155,7 @@ function nuevaCita(e) {
 
     // Validacion de campos
     if( [mascota, propietario, telefono, fecha, hora, sintomas].includes('') ) {
-        ui.imprimirAlerta('All fields must be filled', 'error');
+        ui.imprimirAlerta('Todos los campos son obligatorios', 'error');
         
         return;
     }
