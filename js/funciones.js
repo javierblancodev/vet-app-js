@@ -1,11 +1,16 @@
-const administrarCitas = new Citas();
-const ui = new UI();
+import Citas from "./classes/citas.js";
+import UI from "./classes/UI.js";
+import { formulario } from './selectores.js'
 
-let editando = false;
+export const administrarCitas = new Citas();
+export const ui = new UI();
+
+export let edicionObj = {edicion: false};
+
 
 
 // Objeto de cita
-citaObj = {
+export let citaObj = {
     mascota: '',
     propietario: '',
     telefono: '',
@@ -34,9 +39,9 @@ export function nuevaCita(e) {
         return;
     }
 
-    if(editando) {
+    if(edicionObj.edicion) {
         formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita '
-        editando = false;
+        edicionObj.edicion = false;
         administrarCitas.editarCita({ ...citaObj })
     } else {
         // Generacion de id unico

@@ -1,3 +1,6 @@
+import { administrarCitas } from '../funciones.js';
+import { contendorCitas } from '../selectores.js';
+
 class UI {
     imprimirAlerta(mensaje, tipo) {
         // Crea el div

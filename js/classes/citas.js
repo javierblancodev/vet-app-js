@@ -1,3 +1,6 @@
+import { mascotaInput, propietarioInput, telefonoInput, fechaInput, horaInput, sintomasInput, formulario } from '../selectores.js'
+import { ui, citaObj, edicionObj } from '../funciones.js';
+
 class Citas {
     constructor() {
         this.citas = [];
@@ -44,7 +47,7 @@ class Citas {
         // Cambiar apariencia de boton
         formulario.querySelector('button[type="submit"]').textContent = "Guardar Cambios"
 
-        editando = true;
+        edicionObj.edicion = true;
     }
 }
 
